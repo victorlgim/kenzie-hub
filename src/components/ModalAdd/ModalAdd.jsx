@@ -4,74 +4,23 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { api } from "../../services/api";
 import { useForm } from "react-hook-form";
 import { Loading } from "../FormRegister/style";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { ModalContext } from "../../contexts/ModalContext";
 import { useContext } from "react";
 import { schemaModal } from "../../services/schema";
 import { GlobalContext } from "../../contexts/GlobalContext";
+import { AuthContext } from "../../contexts/AuthContext";
+import { ApiContext } from "../../contexts/ApiContext";
 
 
 const ModalAdd = () => {
-  const errModal = () => {
-    toast.error("Esta tecnologia está em uso!", {
-      position: "top-right",
-      autoClose: 1500,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "colored",
-    });
-  };
-
-  const sucessModal = () => {
-    toast.success("Tecnologia adicionada com sucesso!", {
-      position: "top-right",
-      autoClose: 1000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "colored",
-    });
-  };
 
   const { register, handleSubmit, formState: { errors }, reset } = useForm({ resolver: yupResolver(schemaModal) });
-
-  const token = JSON.parse(localStorage.getItem("token"));
   const { setClose } = useContext(ModalContext)
-  const { loading, setLoading } = useContext(GlobalContext)
+  const { spinner } = useContext(GlobalContext)
+  const { onSubmitAtt } = useContext(ApiContext)
 
-
-  const onSubmitAtt = async data => {
-    try {
-      setLoading(true);
-      const response = await api.post("users/techs", data, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      sucessModal();
-
-      setTimeout(() => {
-        setLoading(false);
-      }, 1800);
-
-      setTimeout(() => {
-        setClose(false);
-      }, 2100);
-    } catch (err) {
-      setTimeout(() => {
-        setClose(true);
-        setLoading(false);
-        errModal();
-        reset();
-      }, 1800);
-    }
-  };
 
   const closeModal = () => {
     setClose(false);
@@ -106,7 +55,7 @@ const ModalAdd = () => {
           )}
 
           <ButtonModalAdd type="submit">
-            {loading ? <Loading src="/spinner.png" /> : "Cadastrar Tecnologia"}
+            {spinner ? <Loading src="/spinner.png" /> : "Cadastrar Tecnologia"}
           </ButtonModalAdd>
         </FormModalMainAdd>
       </Modal>

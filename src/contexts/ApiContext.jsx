@@ -3,8 +3,10 @@ import { useEffect } from "react";
 import { createContext, useState } from "react";
 import { api } from "../services/api";
 import { errModal, sucessModal } from "../services/toast";
+import { AuthContext } from "./AuthContext";
 import { GlobalContext } from "./GlobalContext";
 import { ModalContext } from "./ModalContext";
+
 
 export const ApiContext = createContext({})
 
@@ -12,13 +14,13 @@ export const ApiProvider = ({ children }) => {
 
     // GET PROFILE
     const { close, setClose, deleted } = useContext(ModalContext)
-    const { setLoading } = useContext(GlobalContext)
+    const { setSpinner } = useContext(GlobalContext)
+    const { token } = useContext(AuthContext)
     const [profile, setProfile] = useState(null);
 
     useEffect(() => {
         const getProfile = async () => {
           try {
-            const token = JSON.parse(localStorage.getItem("token"));
             const response = await api.get("profile", { 
                 headers: {
                 Authorization: `Bearer ${token}`,
@@ -33,7 +35,7 @@ export const ApiProvider = ({ children }) => {
     //   ADD NEW TECHNOLOGIES
       const onSubmitAtt = async data => {
         try {
-          setLoading(true);
+          setSpinner(true);
           const response = await api.post("users/techs", data, {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -42,24 +44,25 @@ export const ApiProvider = ({ children }) => {
           sucessModal();
     
           setTimeout(() => {
-            setLoading(false);
+            setSpinner(false);
           }, 1800);
     
           setTimeout(() => {
             setClose(false);
           }, 2100);
+          return response
         } catch (err) {
           setTimeout(() => {
             setClose(true);
-            setLoading(false);
+            setSpinner(false);
             errModal();
-            reset();
           }, 1800);
         }
+       
       };
 
       return (
-        <ApiContext.Provider value={{ profile, setProfile }}>
+        <ApiContext.Provider value={{ profile, setProfile, onSubmitAtt }}>
             {children}
         </ApiContext.Provider>
       )

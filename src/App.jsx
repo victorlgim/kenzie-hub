@@ -8,6 +8,8 @@ import { useState } from "react";
 import { ModalProvider } from "./contexts/ModalContext";
 import { ApiProvider } from "./contexts/ApiContext";
 import { GlobalProvider } from "./contexts/GlobalContext";
+import { AuthProvider } from "./contexts/AuthContext";
+
 
 
 function App() {
@@ -17,6 +19,7 @@ function App() {
     <>
       <GlobalStyle />
       <GlobalProvider>
+        <AuthProvider>
        <ModalProvider>
         <ApiProvider>
         <Routes>
@@ -35,6 +38,7 @@ function App() {
         </Routes>
         </ApiProvider>
        </ModalProvider>
+       </AuthProvider>
       </GlobalProvider>
     </>
   );
