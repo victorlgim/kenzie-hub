@@ -13,13 +13,9 @@ import { ModalContext } from "../../contexts/ModalContext";
 
 const Dashboard = ({ auth, setAuth }) => {
 
-  const {close, setClose, deleted, setDeleted} = useContext(ModalContext)
+  const {close, setClose, deleted, setDeleted, identificator, setIdentificator, reverse, setReverse} = useContext(ModalContext)
   
   const [loading, setLoading] = useState(false);
-  // const [close, setClose] = useState(false);
-  // const [deleted, setDeleted] = useState(false);
-  const [identificator, setIdentificator] = useState(null);
-  const [reverse, setReverse] = useState(null);
   const [profile, setProfile] = useState(null);
   const getToken = localStorage.getItem("token");
   const navigate = useNavigate();

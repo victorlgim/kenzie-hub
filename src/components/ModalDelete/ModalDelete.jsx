@@ -14,8 +14,11 @@ import {
 } from "./style";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useContext } from "react";
+import { ModalContext } from "../../contexts/ModalContext";
 
-const ModalDelete = ({ setDeleted, identificator, reverse, setReverse }) => {
+
+const ModalDelete = () => {
   const deleteToast = () => {
     toast.success("Tecnologia removida com sucesso!", {
       position: "top-right",
@@ -28,6 +31,8 @@ const ModalDelete = ({ setDeleted, identificator, reverse, setReverse }) => {
       theme: "colored",
     });
   };
+
+  const { setDeleted, identificator, setReverse } = useContext(ModalContext)
 
   const [loading, setLoading] = useState(false);
 
