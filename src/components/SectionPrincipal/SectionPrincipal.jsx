@@ -13,15 +13,8 @@ import { DivAnimation } from "../ItemEmpty/style";
 import { useContext } from "react";
 import { ModalContext } from "../../contexts/ModalContext";
 
-const SectionPrincipal = ({
-  setDeleted,
-  deleted,
-  setIdentificator,
-  reverse,
-  profile,
-  setProfile,
-}) => {
-   const { close, setClose } = useContext(ModalContext)
+const SectionPrincipal = ({ profile,setProfile }) => {
+   const { close, setClose, setIdentificator, reverse, setDeleted, deleted } = useContext(ModalContext)
 
   const openModal = () => {
     setClose(true);

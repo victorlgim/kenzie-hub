@@ -28,15 +28,7 @@ const Dashboard = ({ auth, setAuth }) => {
 
   return (
     <DivLoginPrincipal>
-      {deleted && (
-        <ModalDelete
-          setReverse={setReverse}
-          reverse={reverse}
-          identificator={identificator}
-          setIdentificator={setIdentificator}
-          setDeleted={setDeleted}
-        />
-      )}
+      {deleted && (<ModalDelete />)}
       {close && <ModalAdd />}
       {loading && (
         <BaseLoading>

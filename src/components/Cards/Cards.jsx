@@ -1,22 +1,11 @@
-import {
-  LiCardPrincipal,
-  DivCardPrincipal,
-  DivTitleCardPrincipal,
-  DivLastCardPrincipal,
-  TitleCard,
-  NivelCard,
-  TrashCard,
-} from "./style";
+import { useContext } from "react";
+import { ModalContext } from "../../contexts/ModalContext";
+import {LiCardPrincipal, DivCardPrincipal, DivTitleCardPrincipal, DivLastCardPrincipal, TitleCard, NivelCard, TrashCard} from "./style";
 
-const Cards = ({
-  id,
-  title,
-  status,
-  setDeleted,
-  setIdentificator,
-  reverse,
-}) => {
-  const openModalDeleted = e => {
+
+const Cards = ({ id, title, status}) => {
+  const { setDeleted, setIdentificator, reverse } = useContext(ModalContext)
+  const openModalDeleted = () => {
     setDeleted(true);
     setIdentificator(id);
   };
