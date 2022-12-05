@@ -13,6 +13,6 @@ export const ModalProvider = ({ children }) => {
   return (
     <ModalContext.Provider value={{close, setClose, deleted, setDeleted, identificator, setIdentificator, reverse, setReverse}}>
         {children}
-        </ModalContext.Provider>
+    </ModalContext.Provider>
   )
 };

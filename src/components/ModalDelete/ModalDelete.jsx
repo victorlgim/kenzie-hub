@@ -1,17 +1,7 @@
 import React, { useState } from "react";
 import { api } from "../../services/api";
 import { Loading } from "../FormRegister/style";
-import {
-  ButtonModalDelete,
-  DivFlexTopModalDelete,
-  FormMainDeleteModal,
-  DivTopModalDelete,
-  MessageModalDelete,
-  ModalDeleteContainer,
-  ModalDeleted,
-  RemoveModalDelete,
-  TitleModalDelete,
-} from "./style";
+import { ButtonModalDelete, DivFlexTopModalDelete, FormMainDeleteModal, DivTopModalDelete, MessageModalDelete, ModalDeleteContainer, ModalDeleted, RemoveModalDelete, TitleModalDelete } from "./style";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useContext } from "react";
@@ -67,20 +57,19 @@ const ModalDelete = () => {
   return (
     <ModalDeleteContainer>
       <ModalDeleted>
+        
         <DivTopModalDelete>
           <DivFlexTopModalDelete>
             <TitleModalDelete>Excluir Tecnologia</TitleModalDelete>
             <RemoveModalDelete onClick={closeDeleted}>X</RemoveModalDelete>
           </DivFlexTopModalDelete>
         </DivTopModalDelete>
+
         <FormMainDeleteModal onSubmit={DeleteSubmitAtt}>
-          <MessageModalDelete>
-            Você deseja remover este item?
-          </MessageModalDelete>
-          <ButtonModalDelete type="submit">
-            {loading ? <Loading src="/spinner.png" /> : "Excluir Tecnologia"}
-          </ButtonModalDelete>
+          <MessageModalDelete> Você deseja remover este item? </MessageModalDelete>
+          <ButtonModalDelete type="submit">{loading ? <Loading src="/spinner.png" /> : "Excluir Tecnologia"}</ButtonModalDelete>
         </FormMainDeleteModal>
+
       </ModalDeleted>
       <ToastContainer
         position="top-right"
