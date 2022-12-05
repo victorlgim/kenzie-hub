@@ -1,3 +1,4 @@
+import { useContext } from "react";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { DivLoginPrincipal } from "../../components/FormLogin/style";
@@ -7,10 +8,15 @@ import ModalAdd from "../../components/ModalAdd/ModalAdd";
 import ModalDelete from "../../components/ModalDelete/ModalDelete";
 import SectionDashboard from "../../components/SectionDashboard/SectionDashboard";
 import SectionPrincipal from "../../components/SectionPrincipal/SectionPrincipal";
+import { ModalContext } from "../../contexts/ModalContext";
+
 
 const Dashboard = ({ auth, setAuth }) => {
+
+  const {close, setClose} = useContext(ModalContext)
+  
   const [loading, setLoading] = useState(false);
-  const [close, setClose] = useState(false);
+  // const [close, setClose] = useState(false);
   const [deleted, setDeleted] = useState(false);
   const [identificator, setIdentificator] = useState(null);
   const [reverse, setReverse] = useState(null);
@@ -35,7 +41,7 @@ const Dashboard = ({ auth, setAuth }) => {
           setDeleted={setDeleted}
         />
       )}
-      {close && <ModalAdd setClose={setClose} />}
+      {close && <ModalAdd />}
       {loading && (
         <BaseLoading>
           <LoadingRing color="#ff577f" />

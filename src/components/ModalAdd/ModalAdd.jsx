@@ -21,8 +21,11 @@ import { useForm } from "react-hook-form";
 import { Loading } from "../FormRegister/style";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { ModalContext } from "../../contexts/ModalContext";
+import { useContext } from "react";
 
-const ModalAdd = ({ setClose }) => {
+
+const ModalAdd = () => {
   const errModal = () => {
     toast.error("Esta tecnologia está em uso!", {
       position: "top-right",
@@ -65,7 +68,7 @@ const ModalAdd = ({ setClose }) => {
   });
 
   const token = JSON.parse(localStorage.getItem("token"));
-
+  const {setClose} = useContext(ModalContext)
   const [loading, setLoading] = useState(false);
 
   const onSubmitAtt = async data => {

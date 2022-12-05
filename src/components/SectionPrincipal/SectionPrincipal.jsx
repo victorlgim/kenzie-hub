@@ -10,10 +10,10 @@ import { api } from "../../services/api";
 import { useEffect, useState } from "react";
 import ItemEmpty from "../ItemEmpty/ItemEmpty";
 import { DivAnimation } from "../ItemEmpty/style";
+import { useContext } from "react";
+import { ModalContext } from "../../contexts/ModalContext";
 
 const SectionPrincipal = ({
-  setClose,
-  close,
   setDeleted,
   deleted,
   setIdentificator,
@@ -21,6 +21,8 @@ const SectionPrincipal = ({
   profile,
   setProfile,
 }) => {
+   const { close, setClose } = useContext(ModalContext)
+
   const openModal = () => {
     setClose(true);
   };
