@@ -1,20 +1,5 @@
-import React, { useState } from "react";
-import {
-  Modal,
-  ModalContainer,
-  DivTopModal,
-  DivFlexTopModal,
-  TitleModalAdd,
-  RemoveModalAdd,
-  LabelModalAdd,
-  FormModalMainAdd,
-  InputModalAdd,
-  SelectModalAdd,
-  ButtonModalAdd,
-  ErrorModal,
-  ErrorModalTwo,
-} from "./style";
-import * as yup from "yup";
+import React from "react";
+import { Modal, ModalContainer, DivTopModal, DivFlexTopModal, TitleModalAdd, RemoveModalAdd, LabelModalAdd, FormModalMainAdd, InputModalAdd, SelectModalAdd, ButtonModalAdd, ErrorModal, ErrorModalTwo } from "./style";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { api } from "../../services/api";
 import { useForm } from "react-hook-form";
@@ -23,6 +8,8 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { ModalContext } from "../../contexts/ModalContext";
 import { useContext } from "react";
+import { schemaModal } from "../../services/schema";
+import { GlobalContext } from "../../contexts/GlobalContext";
 
 
 const ModalAdd = () => {
@@ -52,24 +39,12 @@ const ModalAdd = () => {
     });
   };
 
-  const formSchema = yup.object().shape({
-    title: yup.string().required("Campo obrigatório*"),
-
-    status: yup.string().required("Campo obrigatório*"),
-  });
-
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    reset,
-  } = useForm({
-    resolver: yupResolver(formSchema),
-  });
+  const { register, handleSubmit, formState: { errors }, reset } = useForm({ resolver: yupResolver(schemaModal) });
 
   const token = JSON.parse(localStorage.getItem("token"));
-  const {setClose} = useContext(ModalContext)
-  const [loading, setLoading] = useState(false);
+  const { setClose } = useContext(ModalContext)
+  const { loading, setLoading } = useContext(GlobalContext)
+
 
   const onSubmitAtt = async data => {
     try {
@@ -121,9 +96,7 @@ const ModalAdd = () => {
 
           <LabelModalAdd>Selecionar status</LabelModalAdd>
           <SelectModalAdd {...register("status")}>
-            <option value="" required hidden>
-              Selecione um nível
-            </option>
+            <option value="" required hidden>Selecione um nível</option>
             <option value="Iniciante">Iniciante</option>
             <option value="Intermediário">Intermediário</option>
             <option value="Avançado">Avançado</option>

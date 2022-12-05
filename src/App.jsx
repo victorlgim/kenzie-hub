@@ -6,6 +6,8 @@ import Login from "./pages/Login/Login";
 import GlobalStyle from "./styles/global";
 import { useState } from "react";
 import { ModalProvider } from "./contexts/ModalContext";
+import { ApiProvider } from "./contexts/ApiContext";
+import { GlobalProvider } from "./contexts/GlobalContext";
 
 
 function App() {
@@ -14,8 +16,9 @@ function App() {
   return (
     <>
       <GlobalStyle />
-      
-      <ModalProvider>
+      <GlobalProvider>
+       <ModalProvider>
+        <ApiProvider>
         <Routes>
           <Route path="/" element={<Login />} />
 
@@ -30,7 +33,9 @@ function App() {
 
           <Route path="*" element={<Login />} />
         </Routes>
-      </ModalProvider>
+        </ApiProvider>
+       </ModalProvider>
+      </GlobalProvider>
     </>
   );
 }

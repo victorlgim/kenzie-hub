@@ -13,11 +13,9 @@ import { ModalContext } from "../../contexts/ModalContext";
 
 const Dashboard = ({ auth, setAuth }) => {
 
-  const {close, setClose, deleted, setDeleted, identificator, setIdentificator, reverse, setReverse} = useContext(ModalContext)
+  const {close, deleted} = useContext(ModalContext)
   
   const [loading, setLoading] = useState(false);
-  const [profile, setProfile] = useState(null);
-  const getToken = localStorage.getItem("token");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -30,29 +28,10 @@ const Dashboard = ({ auth, setAuth }) => {
     <DivLoginPrincipal>
       {deleted && (<ModalDelete />)}
       {close && <ModalAdd />}
-      {loading && (
-        <BaseLoading>
-          <LoadingRing color="#ff577f" />
-        </BaseLoading>
-      )}
+      {loading && (<BaseLoading><LoadingRing color="#ff577f" /></BaseLoading>)}
       <Header setLoading={setLoading} setAuth={setAuth} />
-      <SectionDashboard
-        setAuth={setAuth}
-        profile={profile}
-        setProfile={setProfile}
-      />
-      <SectionPrincipal
-        profile={profile}
-        setProfile={setProfile}
-        setReverse={setReverse}
-        reverse={reverse}
-        identificator={identificator}
-        setIdentificator={setIdentificator}
-        deleted={deleted}
-        setDeleted={setDeleted}
-        close={close}
-        setClose={setClose}
-      />
+      <SectionDashboard />
+      <SectionPrincipal />
     </DivLoginPrincipal>
   );
 };

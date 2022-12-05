@@ -16,18 +16,18 @@ export const ApiProvider = ({ children }) => {
         const getProfile = async () => {
           try {
             const token = JSON.parse(localStorage.getItem("token"));
-            const response = await api.get("profile", {
-              headers: {
+            const response = await api.get("profile", { 
+                headers: {
                 Authorization: `Bearer ${token}`,
-              },
-            });
-    
-            setProfile(response.data);
+              },});
+           setProfile(response.data);
           } catch (err) {}
         };
     
         getProfile();
       }, [close, deleted]);
+
+      
 
       return (
         <ApiContext.Provider value={{ profile, setProfile }}>

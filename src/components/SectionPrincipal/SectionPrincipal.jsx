@@ -1,41 +1,20 @@
 import { ContainerDashboard } from "../Header/style";
-import {
-  DivHeaderMainSection,
-  TitleHeaderMainSection,
-  ButtonHeaderMainSection,
-  UlMainSection,
-} from "./style";
+import { DivHeaderMainSection, TitleHeaderMainSection, ButtonHeaderMainSection, UlMainSection } from "./style";
 import Cards from "../Cards/Cards";
-import { api } from "../../services/api";
-import { useEffect, useState } from "react";
 import ItemEmpty from "../ItemEmpty/ItemEmpty";
 import { DivAnimation } from "../ItemEmpty/style";
 import { useContext } from "react";
 import { ModalContext } from "../../contexts/ModalContext";
+import { ApiContext } from "../../contexts/ApiContext";
 
-const SectionPrincipal = ({ profile,setProfile }) => {
-   const { close, setClose, setIdentificator, reverse, setDeleted, deleted } = useContext(ModalContext)
+
+const SectionPrincipal = () => {
+   const { setClose, setIdentificator, reverse, setDeleted } = useContext(ModalContext)
+   const { profile } = useContext(ApiContext)
 
   const openModal = () => {
     setClose(true);
   };
-
-  useEffect(() => {
-    const getProfile = async () => {
-      try {
-        const token = JSON.parse(localStorage.getItem("token"));
-        const response = await api.get("profile", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-
-        setProfile(response.data);
-      } catch (err) {}
-    };
-
-    getProfile();
-  }, [close, deleted]);
 
   return (
     <ContainerDashboard>

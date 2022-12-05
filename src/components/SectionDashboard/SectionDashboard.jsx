@@ -1,8 +1,11 @@
-import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { ApiContext } from "../../contexts/ApiContext";
 import { ContainerDashboard } from "../Header/style";
 import { DescModule, DivMainDashboard, Section, TitleDashboard } from "./style";
 
-const SectionDashboard = ({ profile }) => {
+
+const SectionDashboard = () => {
+  const { profile } = useContext(ApiContext)
   return (
     <Section>
       <ContainerDashboard>
