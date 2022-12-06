@@ -5,7 +5,9 @@ import { DescModule, DivMainDashboard, Section, TitleDashboard } from "./style";
 
 
 const SectionDashboard = () => {
+  
   const { profile } = useContext(ApiContext)
+
   return (
     <Section>
       <ContainerDashboard>
@@ -22,7 +24,7 @@ const SectionDashboard = () => {
           (
             <></>
           )}
-          
+
         </DivMainDashboard>
       </ContainerDashboard>
     </Section>

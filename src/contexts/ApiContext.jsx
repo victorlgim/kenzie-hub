@@ -27,13 +27,9 @@ export const ApiProvider = ({ children }) => {
         getProfile();
       }, [close, deleted]);
 
-  
-
-       
-
       return (
         <ApiContext.Provider value={{ profile, setProfile  }}>
-            {children}
+            { children }
         </ApiContext.Provider>
       )
 

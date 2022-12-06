@@ -11,6 +11,7 @@ import { GlobalContext } from "../../contexts/GlobalContext";
 import { AuthContext } from "../../contexts/AuthContext";
 
 const ModalDelete = () => {
+  
   const { setDeleted, identificator } = useContext(ModalContext)
   const { spinner, setSpinner } = useContext(GlobalContext);
   const { token } = useContext(AuthContext)
@@ -18,9 +19,8 @@ const ModalDelete = () => {
   const deleteSubmitAtt = async e => {
     e.preventDefault();
     try {
-
       setSpinner(true);
-      const response = await api.delete(`users/techs/${identificator}`, {
+       await api.delete(`users/techs/${identificator}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

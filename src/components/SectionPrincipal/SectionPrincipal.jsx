@@ -9,7 +9,7 @@ import { ApiContext } from "../../contexts/ApiContext";
 
 
 const SectionPrincipal = () => {
-   const { setClose } = useContext(ModalContext)
+   const { openModal } = useContext(ModalContext)
    const { profile } = useContext(ApiContext)
 
   return (
@@ -17,7 +17,7 @@ const SectionPrincipal = () => {
 
       <DivHeaderMainSection>
         <TitleHeaderMainSection>Tecnologias</TitleHeaderMainSection>
-        <ButtonHeaderMainSection onClick={() => setClose(true)}>
+        <ButtonHeaderMainSection onClick={openModal}>
           <img src="./sum.png" alt="add" />
         </ButtonHeaderMainSection>
       </DivHeaderMainSection>

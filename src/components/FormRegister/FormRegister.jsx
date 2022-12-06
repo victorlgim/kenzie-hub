@@ -12,6 +12,7 @@ import { GlobalContext } from "../../contexts/GlobalContext";
 import { useContext } from "react";
 
 const FormRegister = () => {
+  
   const { register, handleSubmit, formState: { errors }, reset } = useForm({ resolver: yupResolver(formSchema) });
   const { spinner, setSpinner } = useContext(GlobalContext)
   const navigate = useNavigate();

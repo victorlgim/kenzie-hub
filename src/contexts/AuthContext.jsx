@@ -18,15 +18,12 @@ export const AuthProvider = ({ children }) => {
           localStorage.removeItem("token");
           localStorage.removeItem("user");
           setAuth(false);
-          navigate("/");
+          navigate("/") 
+          setLoading(false)
         }, 1500);
       };
 
-    useEffect(() => {
-        if (!auth) {
-          navigate("/login");
-        }
-      }, auth);
+    useEffect(() => !auth && navigate("/login"), auth);
      
    return (
      <AuthContext.Provider value={{ token, auth, setAuth, exitAccount}}>

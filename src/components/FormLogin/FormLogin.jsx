@@ -18,7 +18,7 @@ const FormLogin = () => {
 
   const { register, handleSubmit, formState: { errors }, reset } = useForm({ resolver: yupResolver(formSchemaLogin) });
 
-  const [login, setLogin] = useState(true);
+  const [ login, setLogin ] = useState(true);
   const { setAuth } = useContext(AuthContext)
   const { spinner, setSpinner } = useContext(GlobalContext)
   const navigate = useNavigate();
@@ -36,7 +36,7 @@ const FormLogin = () => {
         setAuth(true);
         navigate("/dashboard") }, 3000);
 
-    } catch (err) { setTimeout(() => { setLogin(false); setSpinner(false); reset() }, 2000);}};
+    } catch (err) { setTimeout(() => { setLogin(false); setSpinner(false); reset() }, 2000) }};
 
   return (
 
@@ -55,7 +55,7 @@ const FormLogin = () => {
             <LabelLogin htmlFor="">Senha</LabelLogin>
             <Input type="password" placeholder="Insira sua senha..." onKeyUp={() => setLogin(true)} {...register("password")} />
             {errors.email && <MsgError>{errors.email.message}</MsgError>}
-            {!login ? ( <MsgError>Usuário e/ou senha inválidos.</MsgError> ) : ( <></> )}
+            {!login ? ( <MsgError>Usuário e/ou senha inválidos.</MsgError> ) : <></> }
 
             <ButtonLogin type="submit"> {spinner ? <Loading src="/spinner.png" /> : "Entrar"} </ButtonLogin>
             <SpanLogin>Ainda não possui uma conta?</SpanLogin>
@@ -65,7 +65,7 @@ const FormLogin = () => {
         </Form>
       </DivForm>
     </DivLoginPrincipal>
-    
+
   );
 };
 

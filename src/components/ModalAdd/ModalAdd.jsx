@@ -14,7 +14,7 @@ import { AuthContext } from "../../contexts/AuthContext";
 import { api } from "../../services/api";
 
 const ModalAdd = () => {
-  const { register, handleSubmit, formState: { errors } } = useForm({ resolver: yupResolver(schemaModal) });
+  const { register, handleSubmit, formState: { errors }, reset } = useForm({ resolver: yupResolver(schemaModal) });
   const { setClose } = useContext(ModalContext)
   const { spinner, setSpinner } = useContext(GlobalContext)
   const { token } = useContext(AuthContext)
@@ -22,8 +22,9 @@ const ModalAdd = () => {
   const onSubmitAtt = async data => {
 
     try {
+
       setSpinner(true);
-      const response = await api.post("users/techs", data, {
+       await api.post("users/techs", data, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -38,7 +39,7 @@ const ModalAdd = () => {
 
     } catch (err) {
 
-      setTimeout(() => { setClose(true); setSpinner(false); errModal() }, 1800);
+      setTimeout(() => { setClose(true); setSpinner(false); errModal(); reset() }, 1800);
 
     }
 
