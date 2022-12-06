@@ -64,3 +64,16 @@ export const errModal = () => {
       theme: "colored",
     });
   };
+
+  export const deleteToast = () => {
+    toast.success("Tecnologia removida com sucesso!", {
+      position: "top-right",
+      autoClose: 1000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    });
+  };

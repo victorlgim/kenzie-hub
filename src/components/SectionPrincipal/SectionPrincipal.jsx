@@ -9,41 +9,35 @@ import { ApiContext } from "../../contexts/ApiContext";
 
 
 const SectionPrincipal = () => {
-   const { setClose, setIdentificator, reverse, setDeleted } = useContext(ModalContext)
+   const { setClose } = useContext(ModalContext)
    const { profile } = useContext(ApiContext)
-
-  const openModal = () => {
-    setClose(true);
-  };
 
   return (
     <ContainerDashboard>
+
       <DivHeaderMainSection>
         <TitleHeaderMainSection>Tecnologias</TitleHeaderMainSection>
-        <ButtonHeaderMainSection onClick={openModal}>
+        <ButtonHeaderMainSection onClick={() => setClose(true)}>
           <img src="./sum.png" alt="add" />
         </ButtonHeaderMainSection>
       </DivHeaderMainSection>
 
-      {profile?.techs.length ? (
+      {
+      profile?.techs.length ? 
+      (
         <UlMainSection>
           {profile.techs.map(tech => (
-            <Cards
-              reverse={reverse}
-              setIdentificator={setIdentificator}
-              setDeleted={setDeleted}
-              key={tech.id}
-              id={tech.id}
-              title={tech.title}
-              status={tech.status}
-            />
+            <Cards key={tech.id} id={tech.id} title={tech.title} status={tech.status} />
           ))}
         </UlMainSection>
-      ) : (
+      ) 
+      : 
+      (
         <DivAnimation>
           <ItemEmpty />
         </DivAnimation>
       )}
+
     </ContainerDashboard>
   );
 };

@@ -9,18 +9,40 @@ import { ModalContext } from "../../contexts/ModalContext";
 import { useContext } from "react";
 import { schemaModal } from "../../services/schema";
 import { GlobalContext } from "../../contexts/GlobalContext";
-import { ApiContext } from "../../contexts/ApiContext";
-
+import { errModal, sucessModal } from "../../services/toast";
+import { AuthContext } from "../../contexts/AuthContext";
+import { api } from "../../services/api";
 
 const ModalAdd = () => {
   const { register, handleSubmit, formState: { errors } } = useForm({ resolver: yupResolver(schemaModal) });
   const { setClose } = useContext(ModalContext)
-  const { spinner } = useContext(GlobalContext)
-  const { onSubmitAtt } = useContext(ApiContext)
-  const closeModal = () => {
-    setClose(false);
-  };
-  
+  const { spinner, setSpinner } = useContext(GlobalContext)
+  const { token } = useContext(AuthContext)
+
+  const onSubmitAtt = async data => {
+    
+    try {
+      setSpinner(true);
+      const response = await api.post("users/techs", data, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      sucessModal();
+
+      setTimeout(() => setSpinner(false), 1800);
+
+      setTimeout(() => setClose(false), 2100);
+
+      return response
+
+    } catch (err) {
+
+      setTimeout(() => { setClose(true); setSpinner(false); errModal() }, 1800);
+
+    }
+
   return (
 
     <ModalContainer>
@@ -28,7 +50,7 @@ const ModalAdd = () => {
         <DivTopModal>
           <DivFlexTopModal>
             <TitleModalAdd>Cadastrar Tecnologia</TitleModalAdd>
-            <RemoveModalAdd onClick={closeModal}>X</RemoveModalAdd>
+            <RemoveModalAdd onClick={() => setClose(false)}>X</RemoveModalAdd>
           </DivFlexTopModal>
         </DivTopModal>
 
@@ -52,6 +74,7 @@ const ModalAdd = () => {
       <ToastContainer position="top-right" autoClose={1000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover theme="colored" />
     </ModalContainer>
   );
-};
+  }}
+
 
 export default ModalAdd;

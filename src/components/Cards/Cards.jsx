@@ -5,10 +5,7 @@ import {LiCardPrincipal, DivCardPrincipal, DivTitleCardPrincipal, DivLastCardPri
 
 const Cards = ({ id, title, status}) => {
   const { setDeleted, setIdentificator, reverse } = useContext(ModalContext)
-  const openModalDeleted = () => {
-    setDeleted(true);
-    setIdentificator(id);
-  };
+  const openModalDeleted = () => { setDeleted(true); setIdentificator(id) };
 
   return (
     <LiCardPrincipal id={id} className={reverse}>

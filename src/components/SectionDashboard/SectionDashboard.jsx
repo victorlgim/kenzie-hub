@@ -10,14 +10,19 @@ const SectionDashboard = () => {
     <Section>
       <ContainerDashboard>
         <DivMainDashboard>
-          {profile ? (
+
+          {profile ? 
+          (
             <>
               <TitleDashboard>Olá, {profile.name}</TitleDashboard>
               <DescModule>{profile.course_module}</DescModule>
             </>
-          ) : (
+          )         
+          : 
+          (
             <></>
           )}
+          
         </DivMainDashboard>
       </ContainerDashboard>
     </Section>

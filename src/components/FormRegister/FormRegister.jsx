@@ -72,38 +72,18 @@ const FormRegister = () => {
             <LabelRegister>Selecionar módulo</LabelRegister>
 
             <Select {...register("course_module")}>
-              <option value="" required hidden>
-                Selecione seu módulo
-              </option>
-              <option value="Primeiro módulo (Introdução ao Frontend)">
-                Introdução ao Frontend
-              </option>
-              <option value="Segundo módulo (Frontend Avançado)">
-                Frontend Avançado
-              </option>
-              <option value="Terceiro módulo (Introdução ao Backend)">
-                Introdução ao Backend
-              </option>
-              <option value="Quarto módulo (Backend Avançado)">
-                Backend Avançado
-              </option>
+              <option value="" required hidden>Selecione seu módulo</option>
+              <option value="Primeiro módulo (Introdução ao Frontend)">Introdução ao Frontend</option>
+              <option value="Segundo módulo (Frontend Avançado)">Frontend Avançado</option>
+              <option value="Terceiro módulo (Introdução ao Backend)">Introdução ao Backend</option>
+              <option value="Quarto módulo (Backend Avançado)">Backend Avançado</option>
             </Select>
             {errors.course_module && (<MessageError>{errors.course_module.message}</MessageError>)}
             <ButtonBottom type="submit">{spinner ? <Loading src="/spinner.png" /> : "Cadastrar"}</ButtonBottom>
           </DivWrap>
+
         </DivTheWrap>
-        <ToastContainer
-          position="top-right"
-          autoClose={1000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme="colored"
-        />
+        <ToastContainer position="top-right" autoClose={1000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover theme="colored" />
       </FormMainRegister>
     </>
   );
