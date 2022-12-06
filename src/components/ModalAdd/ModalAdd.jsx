@@ -1,7 +1,6 @@
 import React from "react";
 import { Modal, ModalContainer, DivTopModal, DivFlexTopModal, TitleModalAdd, RemoveModalAdd, LabelModalAdd, FormModalMainAdd, InputModalAdd, SelectModalAdd, ButtonModalAdd, ErrorModal, ErrorModalTwo } from "./style";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { api } from "../../services/api";
 import { useForm } from "react-hook-form";
 import { Loading } from "../FormRegister/style";
 import { ToastContainer } from "react-toastify";
@@ -10,13 +9,12 @@ import { ModalContext } from "../../contexts/ModalContext";
 import { useContext } from "react";
 import { schemaModal } from "../../services/schema";
 import { GlobalContext } from "../../contexts/GlobalContext";
-import { AuthContext } from "../../contexts/AuthContext";
 import { ApiContext } from "../../contexts/ApiContext";
 
 
 const ModalAdd = () => {
 
-  const { register, handleSubmit, formState: { errors }, reset } = useForm({ resolver: yupResolver(schemaModal) });
+  const { register, handleSubmit, formState: { errors } } = useForm({ resolver: yupResolver(schemaModal) });
   const { setClose } = useContext(ModalContext)
   const { spinner } = useContext(GlobalContext)
   const { onSubmitAtt } = useContext(ApiContext)
@@ -27,6 +25,7 @@ const ModalAdd = () => {
   };
 
   return (
+
     <ModalContainer>
       <Modal>
         <DivTopModal>
@@ -35,12 +34,10 @@ const ModalAdd = () => {
             <RemoveModalAdd onClick={closeModal}>X</RemoveModalAdd>
           </DivFlexTopModal>
         </DivTopModal>
+
         <FormModalMainAdd onSubmit={handleSubmit(onSubmitAtt)}>
           <LabelModalAdd>Nome</LabelModalAdd>
-          <InputModalAdd
-            placeholder="Digite uma tecnologia..."
-            {...register("title")}
-          />
+          <InputModalAdd placeholder="Digite uma tecnologia..." {...register("title")} />
           {errors.title && <ErrorModal>{errors.title.message}</ErrorModal>}
 
           <LabelModalAdd>Selecionar status</LabelModalAdd>
@@ -50,13 +47,9 @@ const ModalAdd = () => {
             <option value="Intermediário">Intermediário</option>
             <option value="Avançado">Avançado</option>
           </SelectModalAdd>
-          {errors.status && (
-            <ErrorModalTwo>{errors.status.message}</ErrorModalTwo>
-          )}
+          {errors.status && (<ErrorModalTwo>{errors.status.message}</ErrorModalTwo>)}
 
-          <ButtonModalAdd type="submit">
-            {spinner ? <Loading src="/spinner.png" /> : "Cadastrar Tecnologia"}
-          </ButtonModalAdd>
+          <ButtonModalAdd type="submit">{spinner ? <Loading src="/spinner.png" /> : "Cadastrar Tecnologia"}</ButtonModalAdd>
         </FormModalMainAdd>
       </Modal>
       <ToastContainer
