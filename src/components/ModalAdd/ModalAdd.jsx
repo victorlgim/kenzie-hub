@@ -20,7 +20,7 @@ const ModalAdd = () => {
   const { token } = useContext(AuthContext)
 
   const onSubmitAtt = async data => {
-    
+
     try {
       setSpinner(true);
       const response = await api.post("users/techs", data, {
@@ -35,7 +35,6 @@ const ModalAdd = () => {
 
       setTimeout(() => setClose(false), 2100);
 
-      return response
 
     } catch (err) {
 

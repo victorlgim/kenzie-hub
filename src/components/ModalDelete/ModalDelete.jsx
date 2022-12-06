@@ -31,8 +31,6 @@ const ModalDelete = () => {
 
       setTimeout(() => setDeleted(false), 2100);
 
-      return response
-
     } catch (err) {}
   };
 
