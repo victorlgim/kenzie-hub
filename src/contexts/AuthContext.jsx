@@ -18,8 +18,8 @@ export const AuthProvider = ({ children }) => {
           localStorage.removeItem("token");
           localStorage.removeItem("user");
           setAuth(false);
-          navigate("/") 
-          setLoading(false)
+          navigate("/"); 
+          setLoading(false);
         }, 1500);
       };
 
