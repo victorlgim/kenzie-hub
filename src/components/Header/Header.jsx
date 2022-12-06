@@ -1,24 +1,11 @@
-import { useNavigate } from "react-router-dom";
-import {
-  ButtonBackDashboard,
-  ContainerDashboard,
-  DivHeaderDashboard,
-  HeaderDashboard,
-  LogoHeaderDashboard,
-} from "./style";
+import { useContext } from "react";
+import { AuthContext } from "../../contexts/AuthContext";
+import { ButtonBackDashboard, ContainerDashboard, DivHeaderDashboard, HeaderDashboard, LogoHeaderDashboard } from "./style";
 
-const Header = ({ setLoading, setAuth }) => {
-  const navigate = useNavigate();
+const Header = () => {
 
-  const exitAccount = () => {
-    setLoading(true);
-    setTimeout(() => {
-      localStorage.removeItem("token");
-      localStorage.removeItem("user");
-      setAuth(false);
-      navigate("/");
-    }, 1500);
-  };
+  const { exitAccount } = useContext(AuthContext)
+
   return (
     <HeaderDashboard>
       <ContainerDashboard>

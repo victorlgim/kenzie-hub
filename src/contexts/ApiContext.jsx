@@ -33,7 +33,9 @@ export const ApiProvider = ({ children }) => {
       }, [close, deleted]);
 
     //   ADD NEW TECHNOLOGIES
+
       const onSubmitAtt = async data => {
+
         try {
           setSpinner(true);
           const response = await api.post("users/techs", data, {
@@ -41,23 +43,22 @@ export const ApiProvider = ({ children }) => {
               Authorization: `Bearer ${token}`,
             },
           });
+
           sucessModal();
     
-          setTimeout(() => {
-            setSpinner(false);
-          }, 1800);
+          setTimeout(() => { setSpinner(false) }, 1800);
     
-          setTimeout(() => {
-            setClose(false);
-          }, 2100);
+          setTimeout(() => { setClose(false) }, 2100);
+
           return response
+
         } catch (err) {
-          setTimeout(() => {
-            setClose(true);
-            setSpinner(false);
-            errModal();
-          }, 1800);
+
+          setTimeout(() => { setClose(true); setSpinner(false); errModal() }, 1800);
+
         }
+
+        
        
       };
 

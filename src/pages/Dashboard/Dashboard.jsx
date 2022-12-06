@@ -16,13 +16,9 @@ const Dashboard = ({ auth, setAuth }) => {
   const {close, deleted} = useContext(ModalContext)
   
   const [loading, setLoading] = useState(false);
-  const navigate = useNavigate();
 
-  useEffect(() => {
-    if (!auth) {
-      navigate("/login");
-    }
-  }, auth);
+
+ 
 
   return (
     <DivLoginPrincipal>
