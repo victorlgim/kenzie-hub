@@ -7,10 +7,10 @@ import { GlobalContext } from "./GlobalContext";
 export const AuthContext = createContext({})
 
 export const AuthProvider = ({ children }) => {
-    const navigate = useNavigate()
-    const token = JSON.parse(localStorage.getItem('token'))
-    const { setLoading } = useContext(GlobalContext)
-    const [auth, setAuth] = useState(false)
+    const navigate = useNavigate();
+    const token = JSON.parse(localStorage.getItem('token'));
+    const { setLoading } = useContext(GlobalContext);
+    const [auth, setAuth] = useState(false);
 
     const exitAccount = () => {
         setLoading(true);
