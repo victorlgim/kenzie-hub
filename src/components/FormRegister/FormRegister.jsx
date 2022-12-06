@@ -12,10 +12,11 @@ import { GlobalContext } from "../../contexts/GlobalContext";
 import { useContext } from "react";
 
 const FormRegister = () => {
-  
+
   const { register, handleSubmit, formState: { errors }, reset } = useForm({ resolver: yupResolver(formSchema) });
   const { spinner, setSpinner } = useContext(GlobalContext)
   const navigate = useNavigate();
+
   const onSubmitFunction = async data => {
     try {
       setSpinner(true);
@@ -23,9 +24,9 @@ const FormRegister = () => {
 
       verify();
 
-      setTimeout(() => { setSpinner(false) }, 2700);
+      setTimeout(() => setSpinner(false), 2700);
 
-      setTimeout(() => { navigate("/login") }, 3000);
+      setTimeout(() => navigate("/login"), 3000);
 
       return response
     } catch (err) { 

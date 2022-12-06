@@ -6,12 +6,12 @@ import { LiCardPrincipal, DivCardPrincipal, DivTitleCardPrincipal, DivLastCardPr
 
 const Cards = ({ id, title, status}) => {
 
-  const { setDeleted, setIdentificator, reverse } = useContext(ModalContext)
+  const { setDeleted, setIdentificator } = useContext(ModalContext)
   const { setSpinner } = useContext(GlobalContext)
   const openModalDeleted = () => { setDeleted(true); setIdentificator(id); setSpinner(false) };
 
   return (
-    <LiCardPrincipal id={id} className={reverse}>
+    <LiCardPrincipal id={id} >
 
       <DivCardPrincipal>
 
