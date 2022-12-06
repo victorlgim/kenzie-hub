@@ -41,3 +41,12 @@ export const formSchema = yup.object().shape({
 
     course_module: yup.string().required("Módulo obrigatório"),
   });
+
+ export const formSchemaLogin = yup.object().shape({
+    email: yup
+      .string()
+      .required("Email obrigatório")
+      .email("É necessário fornecer um email válido."),
+
+    password: yup.string().required("Senha obrigatória"),
+  });
