@@ -6,11 +6,13 @@ import { DivAnimation } from "../ItemEmpty/style";
 import { useContext } from "react";
 import { ModalContext } from "../../contexts/ModalContext";
 import { ApiContext } from "../../contexts/ApiContext";
-
+import { GlobalContext } from "../../contexts/GlobalContext";
 
 const SectionPrincipal = () => {
-   const { openModal } = useContext(ModalContext)
+   const { setClose } = useContext(ModalContext)
    const { profile } = useContext(ApiContext)
+   const { setSpinner } = useContext(GlobalContext)
+   const openModal = () => { setClose(true); setSpinner(false) }
 
   return (
     <ContainerDashboard>

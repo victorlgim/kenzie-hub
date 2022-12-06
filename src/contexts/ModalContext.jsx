@@ -10,9 +10,8 @@ export const ModalProvider = ({ children }) => {
     const [identificator, setIdentificator] = useState(null);
     const [reverse, setReverse] = useState(null)
 
-    const openModal = () => setClose(true);
   return (
-    <ModalContext.Provider value={{openModal, close, setClose, deleted, setDeleted, identificator, setIdentificator, reverse, setReverse}}>
+    <ModalContext.Provider value={{close, setClose, deleted, setDeleted, identificator, setIdentificator, reverse, setReverse}}>
         {children}
     </ModalContext.Provider>
   )

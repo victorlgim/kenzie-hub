@@ -42,6 +42,7 @@ const ModalAdd = () => {
       setTimeout(() => { setClose(true); setSpinner(false); errModal(); reset() }, 1800);
 
     }
+  }
 
   return (
 
@@ -74,7 +75,8 @@ const ModalAdd = () => {
       <ToastContainer position="top-right" autoClose={1000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover theme="colored" />
     </ModalContainer>
   );
-  }}
+  
+  }
 
 
 export default ModalAdd;

@@ -1,12 +1,14 @@
 import { useContext } from "react";
+import { GlobalContext } from "../../contexts/GlobalContext";
 import { ModalContext } from "../../contexts/ModalContext";
-import {LiCardPrincipal, DivCardPrincipal, DivTitleCardPrincipal, DivLastCardPrincipal, TitleCard, NivelCard, TrashCard} from "./style";
+import { LiCardPrincipal, DivCardPrincipal, DivTitleCardPrincipal, DivLastCardPrincipal, TitleCard, NivelCard, TrashCard } from "./style";
 
 
 const Cards = ({ id, title, status}) => {
 
   const { setDeleted, setIdentificator, reverse } = useContext(ModalContext)
-  const openModalDeleted = () => { setDeleted(true); setIdentificator(id) };
+  const { setSpinner } = useContext(GlobalContext)
+  const openModalDeleted = () => { setDeleted(true); setIdentificator(id); setSpinner(false) };
 
   return (
     <LiCardPrincipal id={id} className={reverse}>

@@ -9,7 +9,7 @@ export const AuthContext = createContext({})
 export const AuthProvider = ({ children }) => {
     const navigate = useNavigate();
     const token = JSON.parse(localStorage.getItem('token'));
-    const { setLoading } = useContext(GlobalContext);
+    const { setLoading, setSpinner } = useContext(GlobalContext);
     const [auth, setAuth] = useState(false);
 
     const exitAccount = () => {
@@ -20,6 +20,7 @@ export const AuthProvider = ({ children }) => {
           setAuth(false);
           navigate("/"); 
           setLoading(false);
+          setSpinner(false)
         }, 1500);
       };
 
