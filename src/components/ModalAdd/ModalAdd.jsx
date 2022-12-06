@@ -13,17 +13,14 @@ import { ApiContext } from "../../contexts/ApiContext";
 
 
 const ModalAdd = () => {
-
   const { register, handleSubmit, formState: { errors } } = useForm({ resolver: yupResolver(schemaModal) });
   const { setClose } = useContext(ModalContext)
   const { spinner } = useContext(GlobalContext)
   const { onSubmitAtt } = useContext(ApiContext)
-
-
   const closeModal = () => {
     setClose(false);
   };
-
+  
   return (
 
     <ModalContainer>
@@ -52,18 +49,7 @@ const ModalAdd = () => {
           <ButtonModalAdd type="submit">{spinner ? <Loading src="/spinner.png" /> : "Cadastrar Tecnologia"}</ButtonModalAdd>
         </FormModalMainAdd>
       </Modal>
-      <ToastContainer
-        position="top-right"
-        autoClose={1000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="colored"
-      />
+      <ToastContainer position="top-right" autoClose={1000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover theme="colored" />
     </ModalContainer>
   );
 };
