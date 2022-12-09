@@ -8,7 +8,7 @@ export const UserContext = createContext({})
 export const UserProvider = ({ children }) => {
     const navigate = useNavigate();
  
-    const token = JSON.parse(localStorage.getItem('token'));
+    const token = localStorage.getItem('token');
     const { setLoading, setSpinner } = useContext(GlobalContext);
 
     const exitAccount = () => {
