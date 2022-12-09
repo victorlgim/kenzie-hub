@@ -1,5 +1,4 @@
 import { createGlobalStyle } from "styled-components";
-import "../index.css";
 
 const GlobalStyle = createGlobalStyle`
   * {
@@ -28,22 +27,6 @@ const GlobalStyle = createGlobalStyle`
  body {
     background-color: #121214;
  }
-
- /* .reversed {
-    animation: translateNow 0.5s ease;
-}
-
-  @keyframes translateNow {
-  0% {
-    opacity: 1;
-    transform: translateX(0%);
-  }
-  100% {
-    opacity: 0;
-    transform: translateX(-70%);
-   
-  }
-  } */
 
 
 `;
