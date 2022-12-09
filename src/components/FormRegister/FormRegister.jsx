@@ -67,9 +67,11 @@ const FormRegister = () => {
           <DivWrap>
             <LabelRegister>Bio</LabelRegister>
             <Inputs placeholder="Fale sobre você" {...register("bio")} />
+            {errors.bio && (<MessageError>{errors.bio.message}</MessageError>)}
 
             <LabelRegister>Contato</LabelRegister>
             <InputMsk mask="(99) 99999-9999" placeholder="(xx) xxxxx-xxxx" {...register("contact")} />
+            {errors.contact && (<MessageError>{errors.contact.message}</MessageError>)}
 
             <LabelRegister>Selecionar módulo</LabelRegister>
 

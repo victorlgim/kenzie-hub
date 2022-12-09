@@ -16,7 +16,7 @@ const ModalEdit = () => {
   const { register, handleSubmit } = useForm({ resolver: yupResolver(formSchemaEdit) });
    const { setEditing, stt, titling, identificator } = useContext(TechContext)
    const { setSpinner, spinner, spin, setSpin } = useContext(GlobalContext)
-   const { token } = useContext(UserContext)
+   const token = localStorage.getItem('token')
 
    const onSubmitEdit = async data => {
     try {

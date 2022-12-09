@@ -8,7 +8,7 @@ export const UserContext = createContext({})
 export const UserProvider = ({ children }) => {
     const navigate = useNavigate();
  
-    const token = localStorage.getItem('token');
+
     const { setLoading, setSpinner } = useContext(GlobalContext);
 
     const exitAccount = () => {
@@ -22,7 +22,7 @@ export const UserProvider = ({ children }) => {
 
      
    return (
-     <UserContext.Provider value={{ token, exitAccount}}>
+     <UserContext.Provider value={{ exitAccount}}>
         { children }
      </UserContext.Provider>
    )
