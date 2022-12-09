@@ -2,19 +2,18 @@ import React from "react";
 import { api } from "../../services/api";
 import { Loading } from "../FormRegister/style";
 import { ButtonModalDelete, DivFlexTopModalDelete, FormMainDeleteModal, DivTopModalDelete, MessageModalDelete, ModalDeleteContainer, ModalDeleted, RemoveModalDelete, TitleModalDelete } from "./style";
-import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useContext } from "react";
-import { ModalContext } from "../../contexts/ModalContext";
+import { TechContext } from "../../contexts/TechContext";
 import { deleteToast } from "../../services/toast";
 import { GlobalContext } from "../../contexts/GlobalContext";
-import { AuthContext } from "../../contexts/AuthContext";
+import { UserContext } from "../../contexts/UserContext";
 
 const ModalDelete = () => {
   
-  const { setDeleted, identificator } = useContext(ModalContext)
+  const { setDeleted, identificator } = useContext(TechContext)
   const { spinner, setSpinner } = useContext(GlobalContext);
-  const { token } = useContext(AuthContext)
+  const { token } = useContext(UserContext)
 
   const deleteSubmitAtt = async e => {
     e.preventDefault();
@@ -27,11 +26,13 @@ const ModalDelete = () => {
       });
 
       deleteToast();
-      setTimeout(() => setSpinner(false), 1800);
+  
+      setDeleted(false)
 
-      setTimeout(() => setDeleted(false), 2100);
-
-    } catch (err) {}
+    } catch (err) {} 
+    finally {
+      setSpinner(false)
+    }
   };
 
   return (
@@ -51,7 +52,7 @@ const ModalDelete = () => {
         </FormMainDeleteModal>
 
       </ModalDeleted>
-      <ToastContainer position="top-right" autoClose={1000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover theme="colored" />
+    
     </ModalDeleteContainer>
   );
 };

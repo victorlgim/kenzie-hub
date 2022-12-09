@@ -26,6 +26,19 @@ export const errModal = () => {
     });
   };
 
+  export const editSucess = () => {
+    toast.success("Tecnologia atualizada com sucesso!", {
+      position: "top-right",
+      autoClose: 1000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    });
+  };
+
   export const notify = () => {
     toast.error("Email já existente!", {
       position: "top-right",

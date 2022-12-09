@@ -1,34 +1,29 @@
-import { useEffect } from "react";
 import { useContext } from "react";
-import { createContext, useState } from "react";
+import { createContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { GlobalContext } from "./GlobalContext";
 
-export const AuthContext = createContext({})
+export const UserContext = createContext({})
 
-export const AuthProvider = ({ children }) => {
+export const UserProvider = ({ children }) => {
     const navigate = useNavigate();
+ 
     const token = JSON.parse(localStorage.getItem('token'));
     const { setLoading, setSpinner } = useContext(GlobalContext);
-    const [auth, setAuth] = useState(false);
 
     const exitAccount = () => {
-        setLoading(true);
-        setTimeout(() => {
           localStorage.removeItem("token");
           localStorage.removeItem("user");
-          setAuth(false);
+    
           navigate("/"); 
           setLoading(false);
           setSpinner(false)
-        }, 1500);
       };
 
-    useEffect(() => !auth && navigate("/login"), auth);
      
    return (
-     <AuthContext.Provider value={{ token, auth, setAuth, exitAccount}}>
+     <UserContext.Provider value={{ token, exitAccount}}>
         { children }
-     </AuthContext.Provider>
+     </UserContext.Provider>
    )
 }

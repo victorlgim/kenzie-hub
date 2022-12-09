@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const ModalContainer = styled.div`
+export const ModalContainerEdit = styled.div`
   position: fixed;
   width: 100%;
   height: 100vh;
@@ -9,7 +9,7 @@ export const ModalContainer = styled.div`
   background-color: rgba(0, 0, 0, 0.5);
 `;
 
-export const Modal = styled.div`
+export const ModalEditing = styled.div`
   position: relative;
   width: 290px;
   height: 312px;
@@ -52,7 +52,7 @@ export const Modal = styled.div`
   }
 `;
 
-export const DivTopModal = styled.div`
+export const DivTopModalEdit = styled.div`
   background: #343b41;
   border-radius: 3.20867px 3.20867px 0px 0px;
   height: 50.11px;
@@ -64,14 +64,14 @@ export const DivTopModal = styled.div`
   justify-content: space-between;
 `;
 
-export const DivFlexTopModal = styled.div`
+export const DivFlexTopModalEdit = styled.div`
   display: flex;
   justify-content: space-between;
-  width: 95%;
   margin: 0 auto;
+  width: 90%;
 `;
 
-export const TitleModalAdd = styled.h4`
+export const TitleModalEdit = styled.h4`
   font-family: "Inter";
   font-style: normal;
   font-weight: 700;
@@ -79,7 +79,7 @@ export const TitleModalAdd = styled.h4`
   color: #f8f9fa;
 `;
 
-export const RemoveModalAdd = styled.button`
+export const RemoveModalEdit = styled.button`
   font-weight: 600;
   font-size: 12.8347px;
   color: #868e96;
@@ -88,7 +88,7 @@ export const RemoveModalAdd = styled.button`
   background: transparent;
 `;
 
-export const FormModalMainAdd = styled.form`
+export const FormModalMainEdit = styled.form`
   display: flex;
   flex-direction: column;
   width: 80%;
@@ -96,7 +96,7 @@ export const FormModalMainAdd = styled.form`
   margin-top: 30px;
 `;
 
-export const LabelModalAdd = styled.label`
+export const LabelModalEdit = styled.label`
   font-family: "Inter";
   font-style: normal;
   font-weight: 400;
@@ -105,7 +105,7 @@ export const LabelModalAdd = styled.label`
   margin-bottom: 9px;
 `;
 
-export const InputModalAdd = styled.input`
+export const InputModalEdit = styled.input`
   height: 38.5px;
   background: #343b41;
   border: 0.9772px solid #f8f9fa;
@@ -129,7 +129,7 @@ export const InputModalAdd = styled.input`
   }
 `;
 
-export const SelectModalAdd = styled.select`
+export const SelectModalEdit = styled.select`
   height: 38.5px;
   background: #343b41;
   border: 0.9772px solid #f8f9fa;
@@ -152,7 +152,9 @@ export const SelectModalAdd = styled.select`
     border: 0.9772px solid #f8f9fa;
   }
 `;
-export const ButtonModalAdd = styled.button`
+
+
+export const ButtonModalEdit = styled.button`
   height: 38.5px;
   background: #ff577f;
   font-family: "Inter";
@@ -165,7 +167,7 @@ export const ButtonModalAdd = styled.button`
   margin-top: 30px;
 `;
 
-export const ErrorModal = styled.span`
+export const ErrorModalEdit = styled.span`
   color: #ff577f;
   font-size: 11px;
   display: block;
@@ -175,7 +177,7 @@ export const ErrorModal = styled.span`
   margin-bottom: 10px;
 `;
 
-export const ErrorModalTwo = styled.span`
+export const ErrorModalEditTwo = styled.span`
   color: #ff577f;
   font-size: 11px;
   display: block;

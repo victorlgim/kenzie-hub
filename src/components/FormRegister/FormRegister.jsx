@@ -2,7 +2,6 @@ import { useForm } from "react-hook-form";
 import LabelRegister from "../LabelRegister/LabelRegister";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { api } from "../../services/api";
-import { ToastContainer  } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { LogoRegister, FormMainRegister, DivHeaderRegister, ButtonBackRegister, TitleMainRegister, SpanMainRegister, ButtonBottom, DivTheWrap, DivWrap, DivTwoWrap, Inputs, MessageError, InputMsk, Loading, Select } from "./style";
 import { useNavigate } from "react-router-dom";
@@ -23,16 +22,17 @@ const FormRegister = () => {
       const response = await api.post("users", data);
 
       verify();
-
-      setTimeout(() => setSpinner(false), 2700);
-
-      setTimeout(() => navigate("/login"), 3000);
+      navigate("/login")
 
       return response
+
     } catch (err) { 
       notify(); 
       reset({ email: "", password: "", passwordConfirmed: "" }); 
-      setSpinner(false); }
+  
+    } finally {
+      setSpinner(false)
+    }
   };
 
   return (
@@ -85,7 +85,7 @@ const FormRegister = () => {
           </DivWrap>
 
         </DivTheWrap>
-        <ToastContainer position="top-right" autoClose={1000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover theme="colored" />
+        
       </FormMainRegister>
     </>
   );

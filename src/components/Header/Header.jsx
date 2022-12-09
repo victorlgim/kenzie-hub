@@ -1,10 +1,10 @@
 import { useContext } from "react";
-import { AuthContext } from "../../contexts/AuthContext";
+import { UserContext } from "../../contexts/UserContext";
 import { ButtonBackDashboard, ContainerDashboard, DivHeaderDashboard, HeaderDashboard, LogoHeaderDashboard } from "./style";
 
 const Header = () => {
 
-  const { exitAccount } = useContext(AuthContext)
+  const { exitAccount } = useContext(UserContext)
 
   return (
     <HeaderDashboard>

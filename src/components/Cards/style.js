@@ -62,7 +62,7 @@ export const DivTitleCardPrincipal = styled.div``;
 
 export const DivLastCardPrincipal = styled.div`
   display: flex;
-  gap: 30px;
+  gap: 20px;
 `;
 
 export const TitleCard = styled.h3`
@@ -89,3 +89,15 @@ export const TrashCard = styled.img`
     display: block;
   }
 `;
+
+export const EditCard = styled.img`
+  display: none;
+  cursor: pointer;
+  width: 17px;
+  height: 17px;
+
+  @media (min-width: 768px) {
+    display: block;
+  }
+`
+

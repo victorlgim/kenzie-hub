@@ -1,14 +1,15 @@
 import { useContext } from "react";
 import { GlobalContext } from "../../contexts/GlobalContext";
-import { ModalContext } from "../../contexts/ModalContext";
-import { LiCardPrincipal, DivCardPrincipal, DivTitleCardPrincipal, DivLastCardPrincipal, TitleCard, NivelCard, TrashCard } from "./style";
+import { TechContext } from "../../contexts/TechContext";
+import { LiCardPrincipal, DivCardPrincipal, DivTitleCardPrincipal, DivLastCardPrincipal, TitleCard, NivelCard, TrashCard, EditCard } from "./style";
 
 
 const Cards = ({ id, title, status}) => {
 
-  const { setDeleted, setIdentificator } = useContext(ModalContext)
+  const { setDeleted, setIdentificator, setEditing, setStt, setTitling } = useContext(TechContext)
   const { setSpinner } = useContext(GlobalContext)
-  const openModalDeleted = () => { setDeleted(true); setIdentificator(id); setSpinner(false) };
+  const openModalDeleted = () => { setDeleted(true); setIdentificator(id); setSpinner(false) }
+  const openModalEditing = () => { setEditing(true); setIdentificator(id); setSpinner(false); setStt(status); setTitling(title) }
 
   return (
     <LiCardPrincipal id={id} >
@@ -21,6 +22,7 @@ const Cards = ({ id, title, status}) => {
 
         <DivLastCardPrincipal>
           <NivelCard>{status}</NivelCard>
+          <EditCard id={id} src="./edit.png" onClick={openModalEditing}/>
           <TrashCard id={id} src="./trash.png" onClick={openModalDeleted} />
         </DivLastCardPrincipal>
 

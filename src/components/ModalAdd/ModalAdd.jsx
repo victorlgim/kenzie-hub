@@ -3,21 +3,20 @@ import { Modal, ModalContainer, DivTopModal, DivFlexTopModal, TitleModalAdd, Rem
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { Loading } from "../FormRegister/style";
-import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { ModalContext } from "../../contexts/ModalContext";
+import { TechContext } from "../../contexts/TechContext";
 import { useContext } from "react";
 import { schemaModal } from "../../services/schema";
 import { GlobalContext } from "../../contexts/GlobalContext";
 import { errModal, sucessModal } from "../../services/toast";
-import { AuthContext } from "../../contexts/AuthContext";
+import { UserContext } from "../../contexts/UserContext";
 import { api } from "../../services/api";
 
 const ModalAdd = () => {
   const { register, handleSubmit, formState: { errors }, reset } = useForm({ resolver: yupResolver(schemaModal) });
-  const { setClose } = useContext(ModalContext)
+  const { setClose } = useContext(TechContext)
   const { spinner, setSpinner } = useContext(GlobalContext)
-  const { token } = useContext(AuthContext)
+  const { token } = useContext(UserContext)
 
   const onSubmitAtt = async data => {
 
@@ -31,16 +30,18 @@ const ModalAdd = () => {
       });
 
       sucessModal();
-
-      setTimeout(() => setSpinner(false), 1800);
-
-      setTimeout(() => setClose(false), 2100);
+      setClose(false)
 
 
     } catch (err) {
+      setClose(true)
+      setSpinner(false)
+      errModal()
+      reset()
 
-      setTimeout(() => { setClose(true); setSpinner(false); errModal(); reset() }, 1800);
-
+    } finally {
+      setSpinner(false)
+      
     }
   }
 
@@ -72,7 +73,6 @@ const ModalAdd = () => {
           <ButtonModalAdd type="submit">{spinner ? <Loading src="/spinner.png" /> : "Cadastrar Tecnologia"}</ButtonModalAdd>
         </FormModalMainAdd>
       </Modal>
-      <ToastContainer position="top-right" autoClose={1000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover theme="colored" />
     </ModalContainer>
   );
   

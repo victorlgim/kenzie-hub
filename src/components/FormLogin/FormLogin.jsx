@@ -1,6 +1,6 @@
 import ButtonLogin from "../ButtonLogin/ButtonLogin";
 import { DivLogo, Logo, Form,  DivForm, TitleMenu, LabelLogin, DivMainForm, SpanLogin, ButtonRegister, Input, MsgError, DivLoginPrincipal } from "./style";
-import { ToastContainer } from "react-toastify";
+
 import "react-toastify/dist/ReactToastify.css";
 import { api } from "../../services/api";
 import { useForm } from "react-hook-form";
@@ -12,14 +12,12 @@ import { formSchemaLogin } from "../../services/schema";
 import { sucessLogin } from "../../services/toast";
 import { GlobalContext } from "../../contexts/GlobalContext";
 import { useContext } from "react";
-import { AuthContext } from "../../contexts/AuthContext";
 
 const FormLogin = () => {
 
   const { register, handleSubmit, formState: { errors }, reset } = useForm({ resolver: yupResolver(formSchemaLogin) });
 
   const [ login, setLogin ] = useState(true);
-  const { setAuth } = useContext(AuthContext)
   const { spinner, setSpinner } = useContext(GlobalContext)
   const navigate = useNavigate();
 
@@ -30,13 +28,19 @@ const FormLogin = () => {
 
       sucessLogin();
       setLogin(true);
-      setTimeout(() => {
+      
         window.localStorage.setItem("token", JSON.stringify(response.data.token));
         window.localStorage.setItem("user", JSON.stringify(response.data.user));
-        setAuth(true);
-        navigate("/dashboard") }, 3000);
+        
+        navigate("/dashboard") 
 
-    } catch (err) { setTimeout(() => { setLogin(false); setSpinner(false); reset() }, 2000) }};
+    } catch (err) { 
+       setLogin(false); 
+       reset() 
+  } finally {
+    setSpinner(false)
+  }
+  };
 
   return (
 
@@ -61,7 +65,7 @@ const FormLogin = () => {
             <SpanLogin>Ainda não possui uma conta?</SpanLogin>
             <ButtonRegister to="/cadastro">Cadastre-se</ButtonRegister>
           </DivMainForm>
-          <ToastContainer position="top-right" autoClose={1000}hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover theme="colored" />
+         
         </Form>
       </DivForm>
     </DivLoginPrincipal>

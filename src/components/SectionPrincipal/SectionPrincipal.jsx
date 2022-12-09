@@ -4,13 +4,12 @@ import Cards from "../Cards/Cards";
 import ItemEmpty from "../ItemEmpty/ItemEmpty";
 import { DivAnimation } from "../ItemEmpty/style";
 import { useContext } from "react";
-import { ModalContext } from "../../contexts/ModalContext";
-import { ApiContext } from "../../contexts/ApiContext";
+import { TechContext } from "../../contexts/TechContext";
 import { GlobalContext } from "../../contexts/GlobalContext";
 
 const SectionPrincipal = () => {
-   const { setClose } = useContext(ModalContext)
-   const { profile } = useContext(ApiContext)
+   const { setClose } = useContext(TechContext)
+   const { profile } = useContext(TechContext)
    const { setSpinner } = useContext(GlobalContext)
    const openModal = () => { setClose(true); setSpinner(false) }
 

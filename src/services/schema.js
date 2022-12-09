@@ -50,3 +50,8 @@ export const formSchema = yup.object().shape({
 
     password: yup.string().required("Senha obrigatória"),
   });
+
+  export const formSchemaEdit = yup.object().shape({
+    status: yup
+    .string()
+  })

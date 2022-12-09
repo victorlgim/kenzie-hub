@@ -1,17 +1,16 @@
 import { useEffect } from "react";
 import { useContext } from "react";
-import { ApiContext } from "../../contexts/ApiContext";
-import { AuthContext } from "../../contexts/AuthContext";
-import { ModalContext } from "../../contexts/ModalContext";
+import { UserContext } from "../../contexts/UserContext";
+import { TechContext } from "../../contexts/TechContext";
 import { api } from "../../services/api";
 import { ContainerDashboard } from "../Header/style";
 import { DescModule, DivMainDashboard, Section, TitleDashboard } from "./style";
 
 const SectionDashboard = () => {
 
-  const { profile, setProfile } = useContext(ApiContext)
-  const { close, deleted } = useContext(ModalContext)
-  const { token } = useContext(AuthContext)
+  const { profile, setProfile } = useContext(TechContext)
+  const { close, deleted, editing } = useContext(TechContext)
+  const { token } = useContext(UserContext)
 
   useEffect(() => {
     const getProfile = async () => {
@@ -21,11 +20,11 @@ const SectionDashboard = () => {
             Authorization: `Bearer ${token}`,
           },});
        setProfile(response.data);
-      } catch (err) {}
+      } catch (err) {} 
     };
 
     getProfile();
-  }, [close, deleted]);
+  }, [close, deleted, editing]);
 
   return (
     <Section>
