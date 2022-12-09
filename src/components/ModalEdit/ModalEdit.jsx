@@ -41,7 +41,7 @@ const ModalEdit = () => {
       setSpin(true);
        await api.delete(`users/techs/${identificator}`, {
         headers: {
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${JSON.parse(token)}`,
         },
       });
       deleteToast();
