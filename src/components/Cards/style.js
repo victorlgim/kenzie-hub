@@ -7,10 +7,17 @@ export const LiCardPrincipal = styled.li`
   border-radius: 4.06066px;
   margin: 0 auto;
   margin-top: 20px;
+  border: 1px #121214 solid;
   animation: translateShow 1.4s ease;
+  cursor: pointer;
 
   .reversed {
     animation: translateNow 0.5s ease;
+  }
+
+  :hover {
+    border: 1px solid gray;
+    transition: 0.2s ease;
   }
 
   @keyframes translateNow {

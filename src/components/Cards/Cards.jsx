@@ -1,18 +1,17 @@
 import { useContext } from "react";
 import { GlobalContext } from "../../contexts/GlobalContext";
 import { TechContext } from "../../contexts/TechContext";
-import { LiCardPrincipal, DivCardPrincipal, DivTitleCardPrincipal, DivLastCardPrincipal, TitleCard, NivelCard, TrashCard, EditCard } from "./style";
+import { LiCardPrincipal, DivCardPrincipal, DivTitleCardPrincipal, DivLastCardPrincipal, TitleCard, NivelCard } from "./style";
 
 
 const Cards = ({ id, title, status}) => {
 
-  const { setDeleted, setIdentificator, setEditing, setStt, setTitling } = useContext(TechContext)
+  const { setIdentificator, setEditing, setStt, setTitling } = useContext(TechContext)
   const { setSpinner } = useContext(GlobalContext)
-  const openModalDeleted = () => { setDeleted(true); setIdentificator(id); setSpinner(false) }
   const openModalEditing = () => { setEditing(true); setIdentificator(id); setSpinner(false); setStt(status); setTitling(title) }
 
   return (
-    <LiCardPrincipal id={id} >
+    <LiCardPrincipal id={id} onClick={openModalEditing}>
 
       <DivCardPrincipal>
 
@@ -22,8 +21,6 @@ const Cards = ({ id, title, status}) => {
 
         <DivLastCardPrincipal>
           <NivelCard>{status}</NivelCard>
-          <EditCard id={id} src="./edit.png" onClick={openModalEditing}/>
-          <TrashCard id={id} src="./trash.png" onClick={openModalDeleted} />
         </DivLastCardPrincipal>
 
       </DivCardPrincipal>

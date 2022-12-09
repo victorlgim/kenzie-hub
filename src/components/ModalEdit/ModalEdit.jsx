@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { TechContext } from "../../contexts/TechContext";
-import { ButtonModalEdit, DivFlexTopModalEdit, DivTopModalEdit, FormModalMainEdit, InputModalEdit, LabelModalEdit, ModalContainerEdit, ModalEditing, RemoveModalEdit, SelectModalEdit, TitleModalEdit } from "./style";
+import { ButtonDelete, ButtonModalEdit, DivButtonModalBottom, DivFlexTopModalEdit, DivTopModalEdit, FormModalMainEdit, InputModalEdit, LabelModalEdit, ModalContainerEdit, ModalEditing, RemoveModalEdit, SelectModalEdit, TitleModalEdit } from "./style";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import React from "react";
@@ -9,38 +9,47 @@ import { GlobalContext } from "../../contexts/GlobalContext";
 import { UserContext } from "../../contexts/UserContext";
 import { formSchemaEdit } from "../../services/schema";
 import { Loading } from "../FormRegister/style";
-import { editSucess } from "../../services/toast";
-
+import { deleteToast, editSucess } from "../../services/toast";
 
 
 const ModalEdit = () => {
   const { register, handleSubmit } = useForm({ resolver: yupResolver(formSchemaEdit) });
    const { setEditing, stt, titling, identificator } = useContext(TechContext)
-   const { setSpinner, spinner } = useContext(GlobalContext)
+   const { setSpinner, spinner, spin, setSpin } = useContext(GlobalContext)
    const { token } = useContext(UserContext)
 
    const onSubmitEdit = async data => {
-
     try {
-
       setSpinner(true);
        await api.put(`users/techs/${identificator}`, data, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
-
       editSucess();
       setEditing(false)
-
-
     } catch (err) {
       setEditing(true)
       setSpinner(false)
-
     } finally {
-      setSpinner(false)
-      
+      setSpinner(false)     
+    }
+  }
+
+  const onSubmitDelete = async e => {
+    e.preventDefault();
+    try {
+      setSpin(true);
+       await api.delete(`users/techs/${identificator}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      deleteToast();
+      setEditing(false)
+    } catch (err) {} 
+    finally {
+      setSpin(false)
     }
   }
 
@@ -65,8 +74,10 @@ const ModalEdit = () => {
               <option value="Intermediário">Intermediário</option>
               <option value="Avançado">Avançado</option>
             </SelectModalEdit>
-  
+           <DivButtonModalBottom>
             <ButtonModalEdit type="submit">{spinner ? <Loading src="/spinner.png" /> : "Salvar alterações"}</ButtonModalEdit>
+            <ButtonDelete type='submit' onClick={onSubmitDelete}>{spin ? <Loading src="/spinner.png" /> : "Excluir"}</ButtonDelete>
+            </DivButtonModalBottom>
           </FormModalMainEdit>
         </ModalEditing>
       </ModalContainerEdit>

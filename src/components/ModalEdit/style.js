@@ -153,19 +153,43 @@ export const SelectModalEdit = styled.select`
   }
 `;
 
-
 export const ButtonModalEdit = styled.button`
   height: 38.5px;
   background: #ff577f;
   font-family: "Inter";
   font-style: normal;
+  width: 54%;
   font-weight: 500;
   font-size: 12.8347px;
   color: #ffffff;
   border: 1.2182px solid #ff577f;
   border-radius: 4.06066px;
-  margin-top: 30px;
+  
 `;
+
+export const ButtonDelete = styled.button`
+height: 38.5px;
+  background: #868e96;
+  border: 1.2182px solid #868e96;
+  border-radius: 4px;
+  font-family: "Inter";
+  font-style: normal;
+  width: 40%;
+  font-weight: 500;
+  font-size: 12.8347px;
+  color: #ffffff;
+
+  :hover {
+    filter: brightness(0.9)
+  }
+`;
+
+export const DivButtonModalBottom = styled.div`
+  display: flex;
+  align-items: center;
+  margin-top: 30px;
+  justify-content: space-between;
+`
 
 export const ErrorModalEdit = styled.span`
   color: #ff577f;

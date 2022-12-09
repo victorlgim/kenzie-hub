@@ -9,7 +9,7 @@ import { DescModule, DivMainDashboard, Section, TitleDashboard } from "./style";
 const SectionDashboard = () => {
 
   const { profile, setProfile } = useContext(TechContext)
-  const { close, deleted, editing } = useContext(TechContext)
+  const { close, editing } = useContext(TechContext)
   const { token } = useContext(UserContext)
 
   useEffect(() => {
@@ -24,7 +24,7 @@ const SectionDashboard = () => {
     };
 
     getProfile();
-  }, [close, deleted, editing]);
+  }, [close, editing]);
 
   return (
     <Section>
