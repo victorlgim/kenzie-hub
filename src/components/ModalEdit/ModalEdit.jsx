@@ -6,7 +6,6 @@ import { useForm } from "react-hook-form";
 import React from "react";
 import { api } from "../../services/api";
 import { GlobalContext } from "../../contexts/GlobalContext";
-import { UserContext } from "../../contexts/UserContext";
 import { formSchemaEdit } from "../../services/schema";
 import { Loading } from "../FormRegister/style";
 import { deleteToast, editSucess } from "../../services/toast";

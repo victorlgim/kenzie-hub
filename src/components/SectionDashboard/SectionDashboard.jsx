@@ -5,8 +5,6 @@ import { api } from "../../services/api";
 import { ContainerDashboard } from "../Header/style";
 import { DescModule, DivMainDashboard, Section, TitleDashboard } from "./style";
 import { useNavigate } from "react-router-dom";
-import { UserContext } from "../../contexts/UserContext";
-
 
 const SectionDashboard = () => {
 

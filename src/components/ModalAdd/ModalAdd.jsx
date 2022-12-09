@@ -9,7 +9,6 @@ import { useContext } from "react";
 import { schemaModal } from "../../services/schema";
 import { GlobalContext } from "../../contexts/GlobalContext";
 import { errModal, sucessModal } from "../../services/toast";
-import { UserContext } from "../../contexts/UserContext";
 import { api } from "../../services/api";
 
 const ModalAdd = () => {
