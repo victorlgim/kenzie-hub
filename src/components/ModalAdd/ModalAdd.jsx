@@ -16,7 +16,7 @@ const ModalAdd = () => {
   const { register, handleSubmit, formState: { errors }, reset } = useForm({ resolver: yupResolver(schemaModal) });
   const { setClose } = useContext(TechContext)
   const { spinner, setSpinner } = useContext(GlobalContext)
-  const { token } = useContext(UserContext)
+  const token = localStorage.getItem('token')
 
   const onSubmitAtt = async data => {
 
@@ -25,7 +25,7 @@ const ModalAdd = () => {
       setSpinner(true);
        await api.post("users/techs", data, {
         headers: {
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${JSON.parse(token)}`,
         },
       });
 

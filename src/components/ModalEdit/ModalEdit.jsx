@@ -23,7 +23,7 @@ const ModalEdit = () => {
       setSpinner(true);
        await api.put(`users/techs/${identificator}`, data, {
         headers: {
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${JSON.parse(token)}`,
         },
       });
       editSucess();
