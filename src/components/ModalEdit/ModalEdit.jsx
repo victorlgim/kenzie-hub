@@ -44,6 +44,7 @@ const ModalEdit = () => {
           Authorization: `Bearer ${JSON.parse(token)}`,
         },
       });
+      
       deleteToast();
       setEditing(false)
     } catch (err) {} 
